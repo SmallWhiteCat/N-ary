@@ -1,0 +1,25 @@
+"""
+# Definition for a Node.
+class Node(object):
+    def __init__(self, val, children):
+        self.val = val
+        self.children = children
+"""
+class Solution(object):
+    def postorder(self, root):
+        """
+        :type root: Node
+        :rtype: List[int]
+        """
+        if not root:
+            return []
+        
+        stack = [root]
+        res = []
+        while stack:    #后序遍历的逆序
+            p = stack.pop()
+            res.append(p.val)
+            if p.children:
+                for i in range(len(p.children)):
+                    stack.append(p.children[i])
+        return res[::-1]
